@@ -98,10 +98,10 @@ module Databasedotcom
         self.instance_url = json["instance_url"]
         self.oauth_token = json["access_token"]
       elsif options.is_a?(Hash)
-        if options.has_key?("provider")
-          @user_id = options["extra"]["user_hash"]["user_id"] rescue nil
-          self.instance_url = options["credentials"]["instance_url"]
-          self.oauth_token = options["credentials"]["token"]
+        if options.has_key?(:provider)
+          @user_id = options[:extra]["user_hash"]["user_id"] rescue nil
+          self.instance_url = options[:credentials][:instance_url]
+          self.oauth_token = options[:credentials][:token]
         else
           raise ArgumentError unless options.has_key?(:token) && options.has_key?(:instance_url)
           self.instance_url = options[:instance_url]
